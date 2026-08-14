@@ -329,28 +329,21 @@
 </head>
 <body>
 <script>
-/* FALLBACK (guarantees onboarding works even if a CDN script fails) */
+/* AUTOSKIP — open dashboard immediately, no onboarding wall */
 (function(){
-  if (window.__onboardFallback) return;
-  window.__onboardFallback = true;
-  window.__onboardStep = 0;
-  window.nextOnboard = function(){
-    window.__onboardStep = Math.min(window.__onboardStep + 1, 2);
-    var steps = document.querySelectorAll('#onboarding .onboard-step');
-    for (var i=0;i<steps.length;i++){ steps[i].classList.toggle('active', i===window.__onboardStep); }
-    var dots = document.querySelectorAll('#stepDots .step-dot');
-    for (var j=0;j<dots.length;j++){ dots[j].classList.remove('active','done'); if(j<window.__onboardStep)dots[j].classList.add('done'); if(j===window.__onboardStep)dots[j].classList.add('active'); }
-  };
-  window.finishOnboarding = function(){
-    document.getElementById('onboarding').classList.add('hidden');
-    var app = document.getElementById('app');
-    if (app) app.classList.add('visible');
-  };
-  window.logOnboardExpense = function(){
-    var amt = parseFloat((document.getElementById('onboardAmount')||{}).value);
-    if (!amt || amt <= 0) { window.nextOnboard(); return; }
-    window.nextOnboard();
-  };
+  try {
+    var t = setInterval(function(){
+      var app = document.getElementById('app');
+      var ob = document.getElementById('onboarding');
+      if (!app || !ob) return;
+      clearInterval(t);
+      ob.classList.add('hidden');
+      app.classList.add('visible');
+      try { window.STATE = window.STATE || {}; window.STATE.onboarded = true; } catch(e){}
+      try { if (typeof renderAll === 'function') renderAll(); } catch(e){}
+    }, 100);
+    setTimeout(function(){ clearInterval(t); }, 3000);
+  } catch(e){}
 })();
 </script>
 
@@ -908,9 +901,10 @@
 // ──────────────────────────────────────
 // STATE
 // ──────────────────────────────────────
-var WANT_SAMPLE_DATA = false;  // turn true only when "Load sample data" is clicked
+var WANT_SAMPLE_DATA = false;
+window.__AUTOSKIP_ONBOARD = true;  // turn true only when "Load sample data" is clicked
 var STATE = {
-  onboarded: false,
+  onboarded: true,
   healthGranted: false,
   steps: {},        // { "2026-08-10": 7842, ... }
   expenses: [],     // [{ id, amount, category, date, note }]
@@ -1268,7 +1262,7 @@ function grantPlusFromServer() {
 }
 
 // Hook RevenueCat init once Supabase identity is known (for cross-device restore).
-try { if (typeof sbUserReady !== "undefined" && sbUserReady && sbUserReady.then) { sbUserReady.then(function() { initRevenueCat(); }).catch(function(){}); } } catch (e) {}
+sbUserReady.then(function() { initRevenueCat(); });
 var currentPage = 'dashboard';
 var activityChart = null;
 var spendChart = null;
