@@ -328,6 +328,32 @@
 </style>
 </head>
 <body>
+<script>
+/* FALLBACK (guarantees onboarding works even if a CDN script fails) */
+(function(){
+  if (window.__onboardFallback) return;
+  window.__onboardFallback = true;
+  window.__onboardStep = 0;
+  window.nextOnboard = function(){
+    window.__onboardStep = Math.min(window.__onboardStep + 1, 2);
+    var steps = document.querySelectorAll('#onboarding .onboard-step');
+    for (var i=0;i<steps.length;i++){ steps[i].classList.toggle('active', i===window.__onboardStep); }
+    var dots = document.querySelectorAll('#stepDots .step-dot');
+    for (var j=0;j<dots.length;j++){ dots[j].classList.remove('active','done'); if(j<window.__onboardStep)dots[j].classList.add('done'); if(j===window.__onboardStep)dots[j].classList.add('active'); }
+  };
+  window.finishOnboarding = function(){
+    document.getElementById('onboarding').classList.add('hidden');
+    var app = document.getElementById('app');
+    if (app) app.classList.add('visible');
+  };
+  window.logOnboardExpense = function(){
+    var amt = parseFloat((document.getElementById('onboardAmount')||{}).value);
+    if (!amt || amt <= 0) { window.nextOnboard(); return; }
+    window.nextOnboard();
+  };
+})();
+</script>
+
 
 <!-- ONBOARDING -->
 <div id="onboarding">
@@ -1242,7 +1268,7 @@ function grantPlusFromServer() {
 }
 
 // Hook RevenueCat init once Supabase identity is known (for cross-device restore).
-sbUserReady.then(function() { initRevenueCat(); });
+try { if (typeof sbUserReady !== "undefined" && sbUserReady && sbUserReady.then) { sbUserReady.then(function() { initRevenueCat(); }).catch(function(){}); } } catch (e) {}
 var currentPage = 'dashboard';
 var activityChart = null;
 var spendChart = null;
