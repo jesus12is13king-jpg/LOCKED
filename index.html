@@ -328,25 +328,6 @@
 </style>
 </head>
 <body>
-<script>
-/* AUTOSKIP — open dashboard immediately, no onboarding wall */
-(function(){
-  try {
-    var t = setInterval(function(){
-      var app = document.getElementById('app');
-      var ob = document.getElementById('onboarding');
-      if (!app || !ob) return;
-      clearInterval(t);
-      ob.classList.add('hidden');
-      app.classList.add('visible');
-      try { window.STATE = window.STATE || {}; window.STATE.onboarded = true; } catch(e){}
-      try { if (typeof renderAll === 'function') renderAll(); } catch(e){}
-    }, 100);
-    setTimeout(function(){ clearInterval(t); }, 3000);
-  } catch(e){}
-})();
-</script>
-
 
 <!-- ONBOARDING -->
 <div id="onboarding">
@@ -370,7 +351,7 @@
 
   <div class="onboard-step" data-step="1">
     <h2>Your First Entry</h2>
-    <p>Let's log one expense so you can try it out. Don't worry — you can delete or edit it later.</p>
+    <p>Let's log one expense so you can try it out. Don't worry - you can delete or edit it later.</p>
     <div class="form-group" style="width:100%;">
       <label>AMOUNT</label>
       <input type="number" id="onboardAmount" placeholder="$12.50" step="0.01" min="0" style="text-align:center;font-size:1.5rem;font-weight:700;">
@@ -421,9 +402,9 @@
         <span class="card-label">Your Account</span>
         <button class="account-close" onclick="toggleAccount()">✕</button>
       </div>
-      <div id="accountSavedNote" class="saved-note">💾 Saved on this device — your data stays on your phone.</div>
+      <div id="accountSavedNote" class="saved-note">💾 Saved on this device - your data stays on your phone.</div>
       <div id="accountSignedIn" style="display:none;">
-        <div style="font-size:0.85rem;margin-bottom:10px;">Signed in as <b id="accountEmail">—</b></div>
+        <div style="font-size:0.85rem;margin-bottom:10px;">Signed in as <b id="accountEmail">-</b></div>
         <div style="font-size:0.72rem;color:var(--text3);margin-bottom:12px;">Your data is backed up and will sync to any device you sign in on.</div>
         <button class="btn-secondary" style="width:100%;" onclick="signOut()">Sign out</button>
       </div>
@@ -436,7 +417,7 @@
         <div id="authHint" style="font-size:0.72rem;color:var(--text3);margin-top:10px;text-align:center;"></div>
       </div>
       <div style="font-size:0.7rem;color:var(--text3);margin-top:14px;border-top:1px solid var(--border);padding-top:10px;">
-        No account? No problem — everything still saves to this phone.
+        No account? No problem - everything still saves to this phone.
       </div>
     </div>
   </div>
@@ -578,7 +559,7 @@
         </div>
       </div>
       <div class="form-group"><label>NOTE (OPTIONAL)</label><input type="text" id="expNote" placeholder="What was it?"></div>
-      <button class="btn-primary" style="width:100%;" onclick="addExpense()">＋ Log Expense</button>
+      <button class="btn-primary" style="width:100%;" onclick="addExpense()">+ Log Expense</button>
     </div>
 
     <div class="card">
@@ -623,7 +604,7 @@
       </div>
       <div id="lockMomentLocked" style="display:none;">
         <div style="font-size:1rem;font-weight:700;margin-bottom:8px;">🔒 Today's Lock Moment is a Plus feature</div>
-        <div style="font-size:0.78rem;color:var(--text2);margin-bottom:12px;line-height:1.4;">Start your day with a commitment ritual — share LOCKED with 5 friends to unlock it free.</div>
+        <div style="font-size:0.78rem;color:var(--text2);margin-bottom:12px;line-height:1.4;">Start your day with a commitment ritual - share LOCKED with 5 friends to unlock it free.</div>
         <span class="plus-cta" onclick="goPlus()">Unlock with referrals →</span>
       </div>
       <div id="lockMomentDone" style="display:none;">
@@ -689,7 +670,7 @@
         <input type="number" id="goalTarget" value="2" min="1" max="20">
       </div>
       <div class="form-group">
-        <label>PUT THE SAVINGS TOWARD…</label>
+        <label>PUT THE SAVINGS TOWARD...</label>
         <input type="text" id="goalReward" placeholder="e.g. A weekend trip, new sneakers, savings">
       </div>
       <div class="form-group">
@@ -706,7 +687,7 @@
       <div class="card-header"><span class="card-label">Correlation Insights</span></div>
       <div class="corr-hero" id="corrHero">
         <div class="corr-hero-head">Your Activity ↔ Spending Link</div>
-        <div class="corr-hero-score" id="corrScore">—</div>
+        <div class="corr-hero-score" id="corrScore">-</div>
         <div class="corr-hero-label" id="corrLabel"></div>
         <div class="corr-hero-bar"><div class="corr-hero-fill" id="corrFill"></div></div>
       </div>
@@ -722,7 +703,7 @@
       <div id="cutsList"></div>
       <div class="empty-state" id="cutsEmpty">
         <div class="empty-icon">💡</div>
-        <div class="empty-text">Keep tracking — suggestions will appear as patterns emerge.</div>
+        <div class="empty-text">Keep tracking - suggestions will appear as patterns emerge.</div>
       </div>
     </div>
   </div>
@@ -822,7 +803,7 @@
         <span class="card-label" style="color:var(--accent);">LOCK<span style="text-transform:lowercase;">ED</span>+</span>
         <span id="plusStatusBadge" style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;"></span>
       </div>
-      <div style="font-size:1.2rem;font-weight:800;margin-bottom:4px;" id="plusStatusTitle">Get Plus — free</div>
+      <div style="font-size:1.2rem;font-weight:800;margin-bottom:4px;" id="plusStatusTitle">Get Plus - free</div>
       <div style="font-size:0.82rem;color:var(--text2);line-height:1.4;" id="plusStatusDesc">Share LOCKED with friends to unlock Plus. No card required.</div>
       <div id="plusActiveInfo" style="display:none;margin-top:10px;">
         <div style="font-size:0.8rem;font-weight:700;color:var(--accent);" id="plusExpiry"></div>
@@ -860,7 +841,7 @@
 
     <!-- Paid plans (RevenueCat / App Store IAP) -->
     <div class="card" id="paywallCard" style="display:none;">
-      <div class="card-header"><span class="card-label">Go Plus — no referrals needed</span></div>
+      <div class="card-header"><span class="card-label">Go Plus - no referrals needed</span></div>
       <div style="font-size:0.74rem;color:var(--text3);margin-bottom:10px;">Skip the wait. Subscribe and unlock everything instantly. Cancel anytime.</div>
 
       <div id="comingSoonBox" style="display:none;text-align:center;padding:8px 0 14px;">
@@ -901,15 +882,14 @@
 // ──────────────────────────────────────
 // STATE
 // ──────────────────────────────────────
-var WANT_SAMPLE_DATA = false;
-window.__AUTOSKIP_ONBOARD = true;  // turn true only when "Load sample data" is clicked
+var WANT_SAMPLE_DATA = false;  // turn true only when "Load sample data" is clicked
 var STATE = {
-  onboarded: true,
+  onboarded: false,
   healthGranted: false,
   steps: {},        // { "2026-08-10": 7842, ... }
   expenses: [],     // [{ id, amount, category, date, note }]
   goals: [],        // [{ id, sacrifice, target, reward, perCut, startDate }]
-  goalLog: {},      // { "2026-08-10": true } — day met all active goals
+  goalLog: {},      // { "2026-08-10": true } - day met all active goals
   freezesLeft: 1,    // weekly streak-freeze tokens
   freezesUsed: [],   // dates where a freeze was applied
   referrals: 0,      // number of successful referrals
@@ -917,7 +897,7 @@ var STATE = {
   plusSource: null,  // "referral-2wk" | "referral-1mo"
   uid: null,        // Supabase auth.uid()
   checkins: {},      // { "2026-08-10": {committed:"No delivery today", kept:true} }
-  posts: [],         // [{ id, text, ts }] — own community posts
+  posts: [],         // [{ id, text, ts }] - own community posts
   friends: [],       // [{ id, name }]
   friendRequests: [],// [{ id, name }]
   badges: [],        // ["og", "first-expense", ...]
@@ -928,7 +908,7 @@ var STATE = {
 };
 
 // ──────────────────────────────────────
-// ON-DEVICE SAVE (localStorage) — data lives on the user's phone
+// ON-DEVICE SAVE (localStorage) - data lives on the user's phone
 // ──────────────────────────────────────
 var LOCAL_KEY = "locked_state_v1";
 function saveLocal() {
@@ -957,7 +937,7 @@ function saveLocal() {
       joinedDate: STATE.joinedDate
     };
     localStorage.setItem(LOCAL_KEY, JSON.stringify(snapshot));
-  } catch (e) { /* storage full or unavailable — app still works this session */ }
+  } catch (e) { /* storage full or unavailable - app still works this session */ }
 }
 function loadLocal() {
   try {
@@ -991,10 +971,10 @@ function loadLocal() {
 }
 
 // ──────────────────────────────────────
-// SUPABASE — CLIENT + ANONYMOUS AUTH
+// SUPABASE - CLIENT + ANONYMOUS AUTH
 // ──────────────────────────────────────
-var SUPABASE_URL = "https://jihqlfvftwoqmjwhfafa.supabase.co";
-var SUPABASE_ANON_KEY = "sb_publishable_i0q3vy2Crfvz9Lm0-33WOA_ULmYgYYa";
+var SUPABASE_URL = "https://pkknkxwvrcmlnhrgkvah.supabase.co";
+var SUPABASE_ANON_KEY = "sb_publishable_3iAWmb_Q-RjyQg45zz9RMA_cij29lXn";
 var sb = null;
 var sbSession = null;
 var sbLoggedIn = false;
@@ -1062,7 +1042,7 @@ var sbUserReady = (sb ? sbEnsureUser() : Promise.resolve(null)).then(function(ui
 // ──────────────────────────────────────
 
 // ──────────────────────────────────────
-// ACCOUNT — easy email/password sign-in (backup + cross-device sync)
+// ACCOUNT - easy email/password sign-in (backup + cross-device sync)
 // ──────────────────────────────────────
 function toggleAccount() {
   var p = document.getElementById("accountPanel");
@@ -1089,7 +1069,7 @@ function refreshAccountUI() {
     btn.textContent = "👤";
     inEl.style.display = "none";
     outEl.style.display = "block";
-    note.textContent = "💾 Saved on this device — your data stays on your phone.";
+    note.textContent = "💾 Saved on this device - your data stays on your phone.";
   }
 }
 
@@ -1100,7 +1080,7 @@ function authHint(msg, ok) {
 }
 
 async function signUp() {
-  if (!sb) { authHint("Backup unavailable here — your data still saves on this phone.", false); return; }
+  if (!sb) { authHint("Backup unavailable here - your data still saves on this phone.", false); return; }
   var email = document.getElementById("authEmail").value.trim();
   var pw = document.getElementById("authPassword").value;
   if (!email || pw.length < 6) { authHint("Enter a valid email + 6-character password.", false); return; }
@@ -1114,7 +1094,7 @@ async function signUp() {
 }
 
 async function signIn() {
-  if (!sb) { authHint("Backup unavailable here — your data still saves on this phone.", false); return; }
+  if (!sb) { authHint("Backup unavailable here - your data still saves on this phone.", false); return; }
   var email = document.getElementById("authEmail").value.trim();
   var pw = document.getElementById("authPassword").value;
   if (!email || !pw) { authHint("Enter your email and password.", false); return; }
@@ -1135,7 +1115,7 @@ async function signOut() {
   // Switch to a fresh anonymous session so the app keeps working locally
   sbEnsureUser();
   refreshAccountUI();
-  toast("Signed out — data stays on this phone ✓");
+  toast("Signed out - data stays on this phone ✓");
 }
 
 // Backup current data to the server for a signed-in user, and restore on login.
@@ -1164,7 +1144,7 @@ async function sbRestoreUserData() {
   } catch (e) { console.warn("backup failed", e); }
 }
 // ──────────────────────────────────────
-// REVENUECAT — IAP (App Store / Play Store)
+// REVENUECAT - IAP (App Store / Play Store)
 // ──────────────────────────────────────
 // Replace REVENUECAT_PUBLIC_API_KEY with your real key (one per platform).
 // On web/desktop RevenueCat isn't available; the paywall is hidden and Plus is
@@ -1219,9 +1199,9 @@ function renderPaywallState() {
 }
 
 async function purchasePlus(period) {
-  if (!rcConfigured) { toast("Purchases unavailable here — use the app"); return; }
+  if (!rcConfigured) { toast("Purchases unavailable here - use the app"); return; }
   var hint = document.getElementById("paywallHint");
-  hint.textContent = "Opening secure checkout…";
+  hint.textContent = "Opening secure checkout...";
   try {
     var offerings = await Purchases.getOfferings();
     var pkg = offerings.current && offerings.current[period];
@@ -1242,8 +1222,8 @@ async function purchasePlus(period) {
 }
 
 async function restorePurchases() {
-  if (!rcConfigured) { toast("Purchases unavailable here — use the app"); return; }
-  toast("Restoring…");
+  if (!rcConfigured) { toast("Purchases unavailable here - use the app"); return; }
+  toast("Restoring...");
   try {
     var info = await Purchases.restorePurchases();
     if (info && info.entitlements && info.entitlements.active.Plus) {
@@ -1255,7 +1235,7 @@ async function restorePurchases() {
   } catch (e) { toast("Couldn't restore"); }
 }
 
-// On-device we just refresh from the server — the RevenueCat → Supabase webhook
+// On-device we just refresh from the server - the RevenueCat → Supabase webhook
 // is the source of truth for plus_until, so we never trust the client to grant it.
 function grantPlusFromServer() {
   sbLoadPlusStatus().then(function() { renderPlus(); });
@@ -1390,7 +1370,7 @@ function fetchRealSteps() {
   Health.queryAggregated({ startDate: opts.startDate, endDate: opts.endDate, dataType: 'steps', bucket: 'day' })
     .then(function(res) {
       var total = 0;
-      // res.buckets on some plugin versions; res.value on others — handle both
+      // res.buckets on some plugin versions; res.value on others - handle both
       var buckets = (res && res.buckets) || [];
       if (buckets.length) {
         buckets.forEach(function(b) { if (b && b.value) total += b.value; });
@@ -1525,7 +1505,7 @@ function checkinToday(held) {
   else { delete STATE.goalLog[today]; }
   saveLocal();
   if (held) { awardBadge("lock-moment"); toast("Locked in 🔒 Streak on."); }
-  else { toast("Honest tracking — that takes guts."); }
+  else { toast("Honest tracking - that takes guts."); }
   renderAll();
 }
 
@@ -1542,7 +1522,7 @@ function renderCheckinCard() {
     done.style.display = "block";
     document.getElementById("checkinEmoji").textContent = ci.kept ? "🔒" : "🔓";
     document.getElementById("checkinTxt").textContent = ci.kept ? "Locked in today" : "Slipped today";
-    document.getElementById("checkinSub").textContent = ci.kept ? "Come back tomorrow to keep the streak alive." : "No shame — recommit tomorrow. The streak can restart.";
+    document.getElementById("checkinSub").textContent = ci.kept ? "Come back tomorrow to keep the streak alive." : "No shame - recommit tomorrow. The streak can restart.";
     count.textContent = "DONE ✓";
     count.classList.remove("urgent");
   } else {
@@ -1570,7 +1550,7 @@ num.textContent = streak;
 unit.textContent = streak === 1 ? "day" : "days";
 var checkedIn = !!(STATE.checkins && STATE.checkins[todayStr()]);
 if (streak === 0) {
-foot.textContent = checkedIn ? "Checked in — start the climb tomorrow." : "No streak yet — check in to start.";
+foot.textContent = checkedIn ? "Checked in - start the climb tomorrow." : "No streak yet - check in to start.";
 foot.classList.remove("warning");
 } else if (checkedIn) {
 foot.textContent = "Locked in today. Defend the chain tomorrow. 🔥";
@@ -1635,7 +1615,7 @@ function renderSpark(containerId, isSteps) {
     bar.className = 'spark-bar ' + (isSteps ? 'steps' : 'spend');
     if (d === today) bar.classList.add('today');
     bar.style.height = pct + '%';
-    bar.title = (isSteps ? fmtShort(val) + ' steps' : fmtMoney(val)) + ' — ' + new Date(d+'T00:00:00').toLocaleDateString('en-US',{weekday:'short'});
+    bar.title = (isSteps ? fmtShort(val) + ' steps' : fmtMoney(val)) + ' - ' + new Date(d+'T00:00:00').toLocaleDateString('en-US',{weekday:'short'});
     container.appendChild(bar);
   }
 }
@@ -1888,7 +1868,7 @@ function renderInsights() {
     insights.push({
       icon: '📉',
       title: 'You spend more on low-step days',
-      desc: 'On days with <6,000 steps, your average daily spend is <b>' + fmtMoney(lowAvg) + '</b> — ' + lowMorePct + '% higher than active days (' + fmtMoney(highAvg) + ').',
+      desc: 'On days with <6,000 steps, your average daily spend is <b>' + fmtMoney(lowAvg) + '</b> - ' + lowMorePct + '% higher than active days (' + fmtMoney(highAvg) + ').',
       stat: '+' + lowMorePct + '% spend', statClass: 'red',
       bars: { a: lowAvg, b: highAvg, aLabel: 'Low steps', bLabel: 'Active' }
     });
@@ -1926,8 +1906,8 @@ function renderInsights() {
   if (insights.length === 0 && highStepDays > 0 && lowStepDays > 0) {
     insights.push({
       icon: '🎯',
-      title: 'Keep it up — staying active is working',
-      desc: 'Your spending stays consistent whether you move or not. Active days aren’t costing you more — that’s a great sign.',
+      title: 'Keep it up - staying active is working',
+      desc: 'Your spending stays consistent whether you move or not. Active days aren’t costing you more - that’s a great sign.',
       stat: 'On track', statClass: 'green'
     });
   }
@@ -1937,14 +1917,14 @@ function renderInsights() {
   var scoreRaw = lowMorePct;
   var score = Math.max(0, Math.min(100, scoreRaw));
   hero.style.display = 'block';
-  document.getElementById('corrScore').textContent = scoreRaw > 0 ? score + '%' : '—';
+  document.getElementById('corrScore').textContent = scoreRaw > 0 ? score + '%' : '-';
   document.getElementById('corrFill').style.width = Math.max(8, score) + '%';
   if (scoreRaw > 0) {
     document.getElementById('corrLabel').innerHTML =
       'You spend <b>' + scoreRaw + '% more</b> on days you move less than 6,000 steps. Moving more is literally saving you money.';
   } else {
     document.getElementById('corrLabel').textContent =
-      'No strong spending swing from your activity yet — keep logging to sharpen the picture.';
+      'No strong spending swing from your activity yet - keep logging to sharpen the picture.';
   }
 
   list.innerHTML = insights.map(function(ins) {
@@ -2062,7 +2042,7 @@ function dismissCut(id) {
 // ──────────────────────────────────────
 
 // ──────────────────────────────────────
-// LOCK — GOAL PAIRING, DISCIPLINE SCORE, STREAKS
+// LOCK - GOAL PAIRING, DISCIPLINE SCORE, STREAKS
 // ──────────────────────────────────────
 function addGoal() {
   var sacrifice = document.getElementById("goalSacrifice").value;
@@ -2156,7 +2136,7 @@ function renderStreak() {
   document.getElementById("streakCount").textContent = streak;
   document.getElementById("streakLabel").textContent = streak > 0 ? "day" + (streak > 1 ? "s" : "") + " locked in" : "days locked in";
   var detail = document.getElementById("streakDetail");
-  if (streak > 0) detail.textContent = frozen ? "Streak protected — freeze applied. Don't break the chain." : "Keep it going — don't break the chain.";
+  if (streak > 0) detail.textContent = frozen ? "Streak protected - freeze applied. Don't break the chain." : "Keep it going - don't break the chain.";
   else detail.textContent = STATE.goals.length ? "Meet your goal today to start." : "No active goal yet.";
 
   // Streak freeze button visibility
@@ -2232,10 +2212,10 @@ function renderDashboardCommitment() {
   if (ring) ring.setAttribute("stroke-dashoffset", 376.99 * (1 - score / 100));
   if (streakEl) streakEl.textContent = streak + "-day";
   if (msg) {
-    if (score >= 80) msg.textContent = "Elite — you are locked in.";
+    if (score >= 80) msg.textContent = "Elite - you are locked in.";
     else if (score >= 60) msg.textContent = "Solid week. Push for 80+.";
-    else if (score >= 40) msg.textContent = "Momentum is slipping — lock back in.";
-    else msg.textContent = "Lost the thread — start a goal today.";
+    else if (score >= 40) msg.textContent = "Momentum is slipping - lock back in.";
+    else msg.textContent = "Lost the thread - start a goal today.";
   }
 }
 
@@ -2285,7 +2265,7 @@ function renderLockMoment() {
     if (convenience > 0) kept = false; // simplified heuristic: any convenience spend today
     document.getElementById("lockMomentRecap").textContent = kept
       ? "Held the line today. That discipline is compounding."
-      : "Slipped on spending today — recommit tomorrow. The streak survives honest tracking.";
+      : "Slipped on spending today - recommit tomorrow. The streak survives honest tracking.";
     status.textContent = kept ? "HELD ✓" : "SLIPPED";
     status.style.color = kept ? "var(--accent)" : "var(--orange)";
   } else {
@@ -2297,7 +2277,7 @@ function renderLockMoment() {
 }
 
 // ──────────────────────────────────────
-// PLUS — REFERRAL-BASED UNLOCK
+// PLUS - REFERRAL-BASED UNLOCK
 // ──────────────────────────────────────
 // Entitlement & referral count live ONLY in the DB and can be changed ONLY
 // by the accept-referral Edge Function. The client just READS + triggers.
@@ -2370,14 +2350,14 @@ async function sbAcceptReferral(code) {
   }
 }
 
-// Deprecated client-side grant — kept only so old wiring still renders.
+// Deprecated client-side grant - kept only so old wiring still renders.
 function addReferral(n) {
   STATE.referrals = Math.min(10, STATE.referrals + (n || 1));
   renderAll();
 }
 
 function simulateReferral() {
-  toast("Demo only — real referrals are counted server-side.");
+  toast("Demo only - real referrals are counted server-side.");
 }
 
 function grantPlus(days, source) {
@@ -2401,7 +2381,7 @@ async function shareApp() {
     code = STATE.referralCode;
     link = code ? "https://locked.app/r/" + code : "https://locked.app";
   }
-  var shareData = { title: "LOCKED", text: "I'm tracking my activity vs spending. Join with my code " + (code || "") + " and we both build better habits — you'll also get me closer to a free Plus unlock.", url: link };
+  var shareData = { title: "LOCKED", text: "I'm tracking my activity vs spending. Join with my code " + (code || "") + " and we both build better habits - you'll also get me closer to a free Plus unlock.", url: link };
   if (navigator.share) {
     navigator.share(shareData).then(function() {
       toast("Shared! 🎉");
@@ -2432,14 +2412,14 @@ function renderPlus() {
     title.textContent = "Plus is active 🎉";
     desc.textContent = STATE.plusSource === "referral-1mo" ? "You earned 1 month free via referrals." : "You earned 2 weeks free via referrals.";
     activeInfo.style.display = "block";
-    expiry.textContent = days + " day" + (days > 1 ? "s" : "") + " left — enjoy premium insights, Lock Moments & streak freezes.";
+    expiry.textContent = days + " day" + (days > 1 ? "s" : "") + " left - enjoy premium insights, Lock Moments & streak freezes.";
   } else {
     badge.textContent = "FREE";
     badge.style.color = "var(--text2)";
     badge.style.background = "var(--surface2)";
     badge.style.padding = "2px 8px";
     badge.style.borderRadius = "4px";
-    title.textContent = "Get Plus — free";
+    title.textContent = "Get Plus - free";
     desc.textContent = "Share LOCKED with friends to unlock Plus. No card required.";
     activeInfo.style.display = "none";
   }
@@ -2476,13 +2456,13 @@ async function redeemCode() {
   var code = (input.value || "").trim().toUpperCase();
   if (!code) { toast("Enter a code first"); return; }
   input.disabled = true;
-  hint.textContent = "Redeeming…";
+  hint.textContent = "Redeeming...";
   if (!sb) return;
   try {
     var data = await sbAcceptReferral(code);
     if (data && data.success) {
       toast("Code accepted! 🎉");
-      hint.textContent = "Redeemed — thank you!";
+      hint.textContent = "Redeemed - thank you!";
       await sbRefreshPlus();
     }
   } catch (e) {
@@ -2497,7 +2477,7 @@ function plusLockHTML(featureName) {
   return '<div class="empty-state" style="padding:24px 16px;">' +
     '<div class="empty-icon">🔒</div>' +
     '<div class="empty-text" style="font-weight:700;color:var(--text);font-size:0.9rem;">' + featureName + ' is a Plus feature</div>' +
-    '<div style="font-size:0.78rem;color:var(--text2);margin-top:4px;">Share LOCKED with 5 friends to unlock 2 weeks free — or 10 for a full month.</div>' +
+    '<div style="font-size:0.78rem;color:var(--text2);margin-top:4px;">Share LOCKED with 5 friends to unlock 2 weeks free - or 10 for a full month.</div>' +
     '<div style="margin-top:12px;"><span class="plus-cta" onclick="goPlus()">Unlock with referrals →</span></div>' +
     '</div>';
 }
@@ -2529,7 +2509,7 @@ if (STATE.onboarded) {
 }
 
 // ──────────────────────────────────────
-// COMMUNITY — feed, friends, badges/achievements
+// COMMUNITY - feed, friends, badges/achievements
 // ──────────────────────────────────────
 var BADGES = [
   { id: "og", emoji: "👑", name: "OG", desc: "Joined during the early days" },
@@ -2577,7 +2557,7 @@ function awardBadge(id) {
 
 function checkBadges() {
   ensureJoined();
-  // OG — anyone who joined (we mark OG for early users; in v1 everyone who signs up now is OG)
+  // OG - anyone who joined (we mark OG for early users; in v1 everyone who signs up now is OG)
   awardBadge("og");
   if (STATE.expenses.length >= 1) awardBadge("first-expense");
   if (STATE.goals.length >= 1) awardBadge("first-goal");
@@ -2716,7 +2696,7 @@ var defs = [
 { id: "nospend", emoji: "🚫", name: "3 no-spend days", done: weekNoSpendDays(), target: 3, unit: "days", sub: "Stretch your money further." }
 ];
 var html = defs.map(function(c) {
-var pct = Math.min(100, Math.round((c.done \/ c.target) * 100));
+var pct = Math.min(100, Math.round((c.done / c.target) * 100));
 var hit = c.done >= c.target;
 return '<div class="challenge-row">'
 + '<div class="challenge-emoji">' + c.emoji + '</div>'
@@ -2746,7 +2726,7 @@ return '<div class="challenge-row">'
           actions = '<button class="btn-primary" style="padding:4px 10px;font-size:0.72rem;margin-right:4px;" onclick="acceptChallenge(\'' + ch.id + '\')">Accept</button>'
                   + '<button class="btn-secondary" style="padding:4px 10px;font-size:0.72rem;" onclick="declineChallenge(\'' + ch.id + '\')">Decline</button>';
         } else if (ch.status === "pending" && iAmChallenger) {
-          actions = '<span style="font-size:0.7rem;color:var(--text3);">waiting…</span>';
+          actions = '<span style="font-size:0.7rem;color:var(--text3);">waiting...</span>';
         } else if (ch.status === "accepted") {
           actions = '<span style="font-size:0.78rem;font-weight:800;">' + fmtShort(myScore) + ' vs ' + fmtShort(theirScore) + '</span>';
         }
@@ -2754,7 +2734,7 @@ return '<div class="challenge-row">'
           + '<div class="challenge-emoji">⚔️</div>'
           + '<div class="challenge-info">'
           + '<div class="challenge-name">' + m + (iAmChallenger ? ' (you challenged)' : ' (vs you)') + '</div>'
-          + '<div class="challenge-sub">' + (ch.status === "accepted" ? "Live this week — lock in!" : "Friend challenge") + '</div>'
+          + '<div class="challenge-sub">' + (ch.status === "accepted" ? "Live this week - lock in!" : "Friend challenge") + '</div>'
           + statusBadge + ' ' + actions
           + '</div>'
           + '</div>';
@@ -2766,7 +2746,7 @@ return '<div class="challenge-row">'
     // populate the friend dropdown for challenges
 var sel = document.getElementById("challengeFriend");
 if (sel) {
-var opts = '<option value="">Pick a friend…</option>' + STATE.friends.map(function(f) {
+var opts = '<option value="">Pick a friend...</option>' + STATE.friends.map(function(f) {
 return '<option value="' + escapeHtml(f.handle || "") + '">@' + escapeHtml(f.handle || f.name) + '</option>';
 }).join("");
 sel.innerHTML = opts;
@@ -2881,7 +2861,7 @@ async function addFriend() {
     } catch (e) {}
   }
   if (friendUid) {
-    // Real person found — create a server-side friend row (RLS will secure it)
+    // Real person found - create a server-side friend row (RLS will secure it)
     try {
       var ins = await sb.from("friends").insert({ uid: STATE.uid, friend_uid: friendUid });
       if (ins.error) throw ins.error;
@@ -2889,8 +2869,8 @@ async function addFriend() {
       console.warn("friend insert failed (saving locally)", e);
     }
   } else {
-    // Not found (or offline) — do NOT add a fake friend. Only real users on LOCKED.
-    toast("@" + handle + " isn't on LOCKED yet — they need to create an account first.");
+    // Not found (or offline) - do NOT add a fake friend. Only real users on LOCKED.
+    toast("@" + handle + " isn't on LOCKED yet - they need to create an account first.");
    return;
   }
   var name = friendName || (handle.charAt(0).toUpperCase() + handle.slice(1));
@@ -3094,8 +3074,8 @@ function scheduleReminders() {
   try {
     LN.schedule({
       notifications: [
-        { id: 1, title: 'Lock in 🔒', body: 'Morning check-in — log yesterday\'s spending & today\'s steps.', schedule: { on: { hour: 9, minute: 0 } } },
-        { id: 2, title: 'Streak on the line 🔥', body: 'Don\'t break your streak — quick 5-min check keeps you locked in.', schedule: { on: { hour: 19, minute: 30 } } }
+        { id: 1, title: 'Lock in 🔒', body: 'Morning check-in - log yesterday\'s spending & today\'s steps.', schedule: { on: { hour: 9, minute: 0 } } },
+        { id: 2, title: 'Streak on the line 🔥', body: 'Don\'t break your streak - quick 5-min check keeps you locked in.', schedule: { on: { hour: 19, minute: 30 } } }
       ]
     });
   } catch (e) { console.warn('schedule', e); }
